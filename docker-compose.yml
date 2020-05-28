@@ -5,19 +5,19 @@ networks:
     driver: bridge
 
 volumes:
-  nexus-data:
+ # nexus-data:
   jenkins-data:
 
 services:
-  nexus:
-    build: ./docker-nexus3
-    restart: always
-    ports:
-      - "18081:8081"
-    networks:
-      - prodnetwork
-    volumes:
-      - nexus-data:/nexus-data
+#  nexus:
+ #   build: ./docker-nexus3
+ #   restart: always
+ #   ports:
+ #     - "18081:8081"
+ #   networks:
+ #     - prodnetwork
+  #  volumes:
+  #    - nexus-data:/nexus-data
   jenkins:
     build: ./jenkins
     restart: always
@@ -30,10 +30,10 @@ services:
       - /usr/bin/docker:/usr/bin/docker
       - jenkins-data:/var/lib/jenkins/
     depends_on:
-      - nexus
+ #     - nexus
       - sonar
     environment:
-      - NEXUS_PORT=8081
+  #    - NEXUS_PORT=8081
       - SONAR_PORT=9000
       - SONAR_DB_PORT=5432
   sonardb:
